@@ -1,0 +1,19 @@
+{
+  "name": "project-02-bdnd-es6-private-blockchain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-auto-dump": "node simpleChain.js && node app.js"    
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crypto-js": "^3.1.9-1",
+    "level": "^4.0.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  }
+}
