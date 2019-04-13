@@ -122,6 +122,36 @@ class Blockchain {
         }
     }
 
+    // Get Block By Height
+    async getBlockByHash(hash) {
+      // return object as a single string
+      let block = await this.bd.getBlockByHash(hash);      
+
+      // console.log("getBlockByHash");      
+      // console.log(JSON.parse(block));
+      return JSON.parse(block);
+    }
+
+    // Get Blocks By Wallet Address
+    async getBlocksByWalletAddress(address) {
+      // return object as a single string
+      let blocks = await this.bd.getBlocksByWalletAddress(address);      
+
+      if(!blocks.length){
+        return null;
+      }
+
+      // console.log("getBlocksByWalletAddress");      
+      // console.log(JSON.parse(blocks));
+
+      let parsedJSON = [];
+      blocks.forEach((block) => {
+        parsedJSON.push(JSON.parse(block));
+      })
+
+      return parsedJSON;      
+    }    
+
     // Utility Method to Tamper a Block for Test Validation
     // This method is for testing purpose
     _modifyBlock(height, block) {

@@ -2,6 +2,7 @@
 const express = require("express");
 //Importing BodyParser.js module
 const bodyParser = require("body-parser");
+const MemPool = require('./MemPool.js');
 
 /**
  * Class Definition for the REST API
@@ -13,6 +14,7 @@ class BlockAPI {
      */
     constructor() {
 		this.app = express();
+        this.memPool = new MemPool.MemPool();		
 		this.initExpress();
 		this.initExpressMiddleWare();
 		this.initControllers();
@@ -38,7 +40,8 @@ class BlockAPI {
      * Initilization of all the controllers
      */
 	initControllers() {
-		require("./BlockController.js")(this.app);
+		require("./BlockController.js")(this.app, this.memPool);
+		require("./MemPoolController.js")(this.app, this.memPool);
 	}
 
     /**

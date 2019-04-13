@@ -24,7 +24,7 @@ setTimeout(function () {
 			console.log(result);
 			i++;
 			if (i < 10) theLoop(i);
-		});
+		}).catch((err) => { console.log(err);});
 	}, 1000);
   })(0);
 

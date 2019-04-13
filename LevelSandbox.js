@@ -70,6 +70,63 @@ class LevelSandbox {
             });
         });
     }
+    
+    // Get data from levelDB by hash (Promise)
+    getBlockByHash(hash){
+        let self = this;
+        let block = null;
+        return new Promise(function(resolve, reject){
+            // Add your code here, remember in Promises you need to resolve() or reject()
+            self.db.createReadStream()
+            .on('data', function (data) {
+                // Count each object inserted
+                // console.log(data.key, '=', data.value);
+                // console.log("========================");
+                if(JSON.parse(data.value).hash === hash){
+                    block = data.value;
+                }
+             })
+            .on('error', function (err) {
+                // reject with error
+                console.log('Oh my!', err)
+                  reject(err);
+             })
+             .on('close', function () {
+                //resolve with the count value
+                // console.log('Stream closed')
+                resolve(block);
+            });
+        });
+    }  
+    
+    // Get data from levelDB by hash (Promise)
+    getBlocksByWalletAddress(address){
+        let self = this;
+        let blocks = [];
+        return new Promise(function(resolve, reject){
+            // Add your code here, remember in Promises you need to resolve() or reject()
+            self.db.createReadStream()
+            .on('data', function (data) {
+                // Count each object inserted
+                // console.log(data.key, '=', data.value);
+                // console.log("========================");
+                if(JSON.parse(data.value).body.address === address){
+                    blocks.push(data.value);
+                }
+             })
+            .on('error', function (err) {
+                // reject with error
+                console.log('Oh my!', err)
+                  reject(err);
+             })
+             .on('close', function () {
+                //resolve with the count value
+                // console.log('Stream closed');
+                resolve(blocks);
+            });
+        });
+    }
+
 }
 
 module.exports.LevelSandbox = LevelSandbox;
