@@ -1,4 +1,4 @@
-# Project #4. RESTful Web API with Express.js (a Node.js Framework)
+# Project #4. Private Blockchain Notary Service
 
 This is Project 4, where I built a Private Blockchain Notary Service (a Star Registry Service that allows users to claim ownership of their favorite star in the night sky). The project is based on the previous Project, **RESTful Web API with Express.js (a Node.js Framework)**. In this project I have created Blockchain ID validation routine (tested using legacy wallet on bitcoin testnet), stored it in mempool and created an API for the private blockchain to register star data onto blockchain and retrieve it. The API functionality is exposed and can be consumed by several types of web clients ranging from desktop, mobile, and IoT devices.
 
