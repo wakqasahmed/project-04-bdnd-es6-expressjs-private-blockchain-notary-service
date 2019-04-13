@@ -19,12 +19,12 @@ To setup the project for review do the following:
 
 In order to test the functionality you could use the following tools:
 
-1. Postman
+### 1. Postman
 * use API endpoints documentation https://documenter.getpostman.com/view/6171412/S1ENzePq
 * send GET and POST requests (make sure to run the command `npm start` and keep the server running)
 
-2. cURL
-* Submit a validation request to Mempool \
+### 2. cURL
+#### Submit a validation request to Mempool
 `
 curl -X POST \
   http://localhost:8000/requestValidation \
@@ -35,7 +35,7 @@ curl -X POST \
 }'
 `
 
-* Send a Message-Signature validation request \
+#### Send a Message-Signature validation request
 `
 curl -X POST \
   http://localhost:8000/message-signature/validate \
@@ -47,7 +47,7 @@ curl -X POST \
 }'
 `
 
-* Send star data to be stored \
+#### Send star data to be stored
 `
 {
 "address": "19xaiMqayaNrn3x7AjV5cU4Mk5f5prRVpL",
@@ -59,17 +59,17 @@ curl -X POST \
 }
 `
 
-* Get star block by hash \
+#### Get star block by hash
 `
 curl "http://localhost:8000/stars/hash:a59e9e399bc17c2db32a7a87379a8012f2c8e08dd661d7c0a6a4845d4f3ffb9f"
 `
 
-* Get star block by wallet address \
+#### Get star block by wallet address
 `
 curl "http://localhost:8000/api/stars/address:mq9qmGxm7bwTm2rhZtZR3HX4gcjVJFbTnp"
 `
 
-* Get star block by height \
+#### Get star block by height
 `curl -X GET \
   http://localhost:8000/api/block/2 \
   -H 'cache-control: no-cache'
