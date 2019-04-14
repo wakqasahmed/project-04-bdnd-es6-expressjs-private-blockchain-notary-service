@@ -105,9 +105,9 @@ class BlockController {
     
                 self.blockChain.addBlock(newBlock).then( result => {
                     self.memPool.removeValidatedRequest(address);
-
+                    
                     //decode story before returning result
-                    newBlock.body.star.storyDecoded = hex2ascii(newBlock.body.star.story);
+                    // newBlock.body.star.storyDecoded = hex2ascii(newBlock.body.star.story);
 
                     console.log(result); // Success!
                     res.json(newBlock);

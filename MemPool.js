@@ -57,8 +57,8 @@ class MemPool {
         // return new Promise((resolve, reject) => {
             let index = 0;
             self.mempoolValid.forEach((mempoolValidObj) => {
-                if(mempoolValidObj.walletAddress === walletAddress){
-                    self.mempoolValidObj.splice(index,1);
+                if(mempoolValidObj.status.address === walletAddress){
+                    self.mempoolValid.splice(index,1);
                 }
                 index++;                
             });
@@ -133,7 +133,7 @@ class MemPool {
     async validateRequestByWallet(mempoolObj, signature) {      
         let self = this;
 
-        // Verify the windowTime.        
+        // Verify the windowTime (verified in the caller method).
         // Verify the signature.
         let isValid = await bitcoinMessage.verify(mempoolObj.message, mempoolObj.walletAddress, signature);
 
@@ -146,7 +146,7 @@ class MemPool {
 
             //set the validation window
             let timeElapse = (new Date().getTime().toString().slice(0,-3)) - requestObjValid.status.requestTimeStamp;
-            let timeLeft = (TimeoutMempoolValidWindowTime/1000) - timeElapse;
+            let timeLeft = (TimeoutRequestsWindowTime/1000) - timeElapse;
             requestObjValid.status.validationWindow = timeLeft;
 
             console.log(self.mempoolValid.length);
@@ -160,6 +160,7 @@ class MemPool {
             }, TimeoutMempoolValidWindowTime );
 
             // If you have implemented a timeoutArray, make sure you clean it up before returning the object.
+            self.removeValidationRequest(mempoolObj.walletAddress);
 
             // Return the validRequest object
             return requestObjValid;
